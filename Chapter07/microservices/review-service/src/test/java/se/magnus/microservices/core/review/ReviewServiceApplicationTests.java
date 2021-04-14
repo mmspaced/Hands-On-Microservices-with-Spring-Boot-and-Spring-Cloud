@@ -1,8 +1,7 @@
 package se.magnus.microservices.core.review;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.messaging.Sink;
@@ -18,15 +17,14 @@ import se.magnus.api.event.Event;
 import se.magnus.microservices.core.review.persistence.ReviewRepository;
 import se.magnus.util.exceptions.InvalidInputException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static se.magnus.api.event.Event.Type.CREATE;
 import static se.magnus.api.event.Event.Type.DELETE;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=RANDOM_PORT, properties = {"logging.level.se.magnus=DEBUG","spring.datasource.url=jdbc:h2:mem:review-db"})
 public class ReviewServiceApplicationTests {
 
@@ -41,7 +39,7 @@ public class ReviewServiceApplicationTests {
 
 	private AbstractMessageChannel input = null;
 
-	@Before
+	@BeforeEach
 	public void setupDb() {
 		input = (AbstractMessageChannel) channels.input();
 		repository.deleteAll();

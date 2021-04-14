@@ -2,7 +2,7 @@ package se.magnus.microservices.composite.product;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import se.magnus.api.core.product.Product;
 import se.magnus.api.event.Event;
 

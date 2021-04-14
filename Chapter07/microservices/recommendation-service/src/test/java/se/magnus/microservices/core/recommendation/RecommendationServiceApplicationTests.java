@@ -1,8 +1,7 @@
 package se.magnus.microservices.core.recommendation;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.messaging.Sink;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.integration.channel.AbstractMessageChannel;
 import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.support.GenericMessage;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import se.magnus.api.core.product.Product;
 import se.magnus.api.core.recommendation.Recommendation;
@@ -18,15 +16,13 @@ import se.magnus.api.event.Event;
 import se.magnus.microservices.core.recommendation.persistence.RecommendationRepository;
 import se.magnus.util.exceptions.InvalidInputException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static se.magnus.api.event.Event.Type.CREATE;
 import static se.magnus.api.event.Event.Type.DELETE;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=RANDOM_PORT, properties = {"spring.data.mongodb.port: 0"})
 public class RecommendationServiceApplicationTests {
 
@@ -41,7 +37,7 @@ public class RecommendationServiceApplicationTests {
 
 	private AbstractMessageChannel input = null;
 
-	@Before
+	@BeforeEach
 	public void setupDb() {
 		input = (AbstractMessageChannel) channels.input();
 		repository.deleteAll().block();

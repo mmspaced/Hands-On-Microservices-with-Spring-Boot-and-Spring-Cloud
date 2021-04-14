@@ -1,13 +1,11 @@
 package se.magnus.microservices.composite.product;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,7 +22,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=RANDOM_PORT)
 public class ProductCompositeServiceApplicationTests {
 
@@ -38,7 +35,7 @@ public class ProductCompositeServiceApplicationTests {
 	@MockBean
 	private ProductCompositeIntegration compositeIntegration;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 
 		when(compositeIntegration.getProduct(PRODUCT_ID_OK)).
